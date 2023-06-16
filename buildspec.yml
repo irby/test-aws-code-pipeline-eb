@@ -20,6 +20,20 @@ phases:
       - echo Publish started on `date`
       - dotnet publish -c Release -o ./ AwsPipelineDemo/AwsPipelineDemo.csproj
 
+  substitute_ebextensions:
+    commands:
+      - |
+        if [ "$BUILD_ENV" = "prod" ] ; then
+          echo Configurating ebextensions with prod
+          cp -a .ebextensions.prod/ .ebextensions
+        fi
+      - |
+        if [ "$BUILD_ENV" = "dev" ] ; then
+          echo Configuring ebextensions with dev
+          cp -a .ebextensions.dev/ .ebextensions
+        fi
+
+
 artifacts:
   files:
     - '**/*'
