@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/AwsPipelineDemo.Example.props" />
+</Project>
