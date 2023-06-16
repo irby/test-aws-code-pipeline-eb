@@ -22,12 +22,12 @@ phases:
       - |
         if [ "$BUILD_ENV" = "prod" ] ; then
           echo Configurating ebextensions with prod
-          cp -a .ebextensions.prod/ .ebextensions
+          cp -a .ebextensions.prod/*.config .ebextensions/
         fi
       - |
         if [ "$BUILD_ENV" = "dev" ] ; then
           echo Configuring ebextensions with dev
-          cp -a .ebextensions.dev/ .ebextensions
+          cp -a .ebextensions.dev/*.config .ebextensions/
         fi
 
 artifacts:
