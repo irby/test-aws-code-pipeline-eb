@@ -1,0 +1,20 @@
+{
+  "SerializedFilePath": "/Users/irby/source/test-aws-code-pipeline-eb/AwsPipelineDemo/obj/Debug/net5.0/project.razor.json",
+  "FilePath": "/Users/irby/source/test-aws-code-pipeline-eb/AwsPipelineDemo/AwsPipelineDemo.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-3.0",
+    "LanguageVersion": "5.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-3.0"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 900
+  },
+  "RootNamespace": "AwsPipelineDemo",
+  "Documents": [],
+  "SerializationFormat": "0.3"
+}
