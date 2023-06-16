@@ -27,13 +27,15 @@ namespace AwsPipelineDemo.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var environment = Environment.GetEnvironmentVariable("TEST_VAR") ?? "undefined";
+            var environment1 = Environment.GetEnvironmentVariable("TEST_VAR") ?? "undefined";
+            var environment2 = Environment.GetEnvironmentVariable("HELLO_VAR") ?? "undefined";
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = environment
+                Summary = environment1,
+                Summary2 = environment2
             })
             .ToArray();
         }
