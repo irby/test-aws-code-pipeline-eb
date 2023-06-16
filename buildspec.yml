@@ -21,14 +21,21 @@ phases:
       - dotnet publish -c Release -o ./ AwsPipelineDemo/AwsPipelineDemo.csproj
       - |
         if [ "$BUILD_ENV" = "prod" ] ; then
-          echo Configurating ebextensions with prod
-          cp -a .ebextensions.prod/*.config .ebextensions/
+          echo Configurating ebextensions with prod variables
+          export $(cat .ebextensions/.env.prod | xargs)  
         fi
       - |
         if [ "$BUILD_ENV" = "dev" ] ; then
-          echo Configuring ebextensions with dev
-          cp -a .ebextensions.dev/*.config .ebextensions/
+          echo Configuring ebextensions with dev variables
+          export $(cat .ebextensions/.env.dev | xargs)  
         fi
+      - |
+        echo Transforming ebextension config files
+        for i in .ebextensions/*.config ; do
+            envsubst < $i > $i+.temp
+            mv $i+.temp $i
+        done
+        echo Successfully transformed ebextensions config values with $BUILD_ENV variables
 
 artifacts:
   files:
