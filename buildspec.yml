@@ -20,14 +20,12 @@ phases:
       - echo Publish started on `date`
       - dotnet publish -c Release -o ./ AwsPipelineDemo/AwsPipelineDemo.csproj
       - |
-        if [ "$BUILD_ENV" = "prod" ] ; then
-          echo Configurating ebextensions with prod variables
-          export $(cat .ebextensions/.env.prod | xargs)  
-        fi
-      - |
         if [ "$BUILD_ENV" = "dev" ] ; then
           echo Configuring ebextensions with dev variables
           export $(cat .ebextensions/.env.dev | xargs)  
+        else
+          echo Configuring ebextensions with prod variables
+          export $(cat .ebextensions/.env.prod | xargs)  
         fi
       - |
         echo Transforming ebextension config files
@@ -40,3 +38,8 @@ phases:
 artifacts:
   files:
     - '**/*'
+
+
+- schedule a little bit of time to test this out (next week?)
+- change .env.dev and .env.prod to be differnet file names (decide on a file name convention)
+- change so we have a single if check on BUILD_ENV to see if it's dev and set, default it to go to prod environemnt
